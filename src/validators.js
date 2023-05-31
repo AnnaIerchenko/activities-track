@@ -1,10 +1,13 @@
-import { HOURS_IN_DAY, MIDNIGHT_HOUR, NAV_ITEMS } from './constants'
+import { BUTTON_TYPES, HOURS_IN_DAY, MIDNIGHT_HOUR, NAV_ITEMS } from './constants'
 
 
 export function isPageValid(page){
   return Object.keys(NAV_ITEMS).includes(page)
 }
 
+export function isButtonTypeValid(type){
+  return BUTTON_TYPES.includes(type)
+}
 export function validateTimelineItems(timelineItems){
   return timelineItems.every(isTimelineItemValid)
 }

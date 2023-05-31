@@ -1,5 +1,5 @@
 <script setup>
- 
+ import { isPageValid } from '../validators';
   import NavItem from './NavItem.vue';
 
   import { NAV_ITEMS } from '../constants'
@@ -8,9 +8,7 @@
     currentPage: {
       required: true,
       type: String,
-      validator(currentPage){
-        return Object.keys(NAV_ITEMS).includes(currentPage)
-      }
+      validator: isPageValid
     }
   })
 

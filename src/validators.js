@@ -56,7 +56,7 @@ function isNumber(value){
 function isString(value){
   return typeof value === "string"
 }
-function isUndefined(value){
+export function isUndefined(value){
   return value === undefined
 }
 function isNull(value){

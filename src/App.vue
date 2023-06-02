@@ -20,7 +20,7 @@ const activities = ref(generateActivities())
 //for generate options in drop-down list , after changing
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 
-const timelineItems = generateTimelineItems()
+const timelineItems = ref(generateTimelineItems())
 function goTo(page){
   currentPage.value = page
 }
@@ -30,11 +30,16 @@ function createActivity(activity){
 }
 
 function deleteActivity(activity){
+  timelineItems.value.forEach((timelineItem) => {
+    if(timelineItem.activityId === activity.id){
+      timelineItem.activityId = null
+    }
+  })
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 
 function setTimelineItemActivity({timelineItem, activity}){
-  timelineItem.activityId = activity.id
+  timelineItem.activityId = activity?.id || null
 }
 </script>
 

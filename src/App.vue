@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
   import TheHeader from './components/TheHeader.vue'
   import TheNav from './components/TheNav.vue'
   import TheTimeline from './pages/TheTimeline.vue'
@@ -17,8 +17,8 @@
 const currentPage = ref(normalizePageHash())
 
 const activities = ref(generateActivities())
-
-const activitySelectOptions = generateActivitySelectOptions(activities.value)
+//for generate options in drop-down list , after changing
+const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 
 const timelineItems = generateTimelineItems()
 function goTo(page){

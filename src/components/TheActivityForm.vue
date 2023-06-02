@@ -3,17 +3,23 @@ import { PlusIcon } from '@heroicons/vue/24/outline';
 import BaseButton from './BaseButton.vue';
 import { isActivityValid } from '../validators';
 import { nextTick, ref } from 'vue';
+import { id } from '../functions';
+
 
 const emit = defineEmits({
   submit: isActivityValid,
   
 })
 
-const activity = ref('')
+const name = ref('')
 
 async function submit(){
-  emit('submit', activity.value)
-  activity.value = ''
+  emit('submit', {
+    id: id(),
+    name: name.value,
+    secondsToComplete: 0 
+  })
+  name.value = ''
 
   //return promise, all function inside will work after update DOM
   await nextTick()
@@ -29,10 +35,10 @@ async function submit(){
       <input 
         type="text" 
         placeholder="activity name"
-        v-model="activity"
+        v-model="name"
         class="w-full rounded border px-4 text-xl"
         >
-      <BaseButton :disabled="activity.trim() === ''">
+      <BaseButton :disabled="name.trim() === ''">
         <PlusIcon class="h-8"/>
       </BaseButton>
     </form>

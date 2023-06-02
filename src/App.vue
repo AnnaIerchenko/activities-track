@@ -6,11 +6,17 @@
   import TheActivities from './pages/TheActivities.vue'
   import TheProgress from './pages/TheProgress.vue'
   import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from './constants'
-  import {normalizePageHash, generateTimelineItems, generateActivitySelectOptions} from './functions'
+  import {
+    normalizePageHash, 
+    generateTimelineItems, 
+    generateActivitySelectOptions, 
+    generateActivities
+  } 
+  from './functions'
 
 const currentPage = ref(normalizePageHash())
 
-const activities = ref(['Coding', 'Reading', 'Training'])
+const activities = ref(generateActivities())
 
 const activitySelectOptions = generateActivitySelectOptions(activities.value)
 
@@ -38,7 +44,8 @@ function deleteActivity(activity){
     :activity-select-options="activitySelectOptions"
     />
   <TheActivities 
-    v-show="currentPage === PAGE_ACTIVITIES" :activities="activities"
+    v-show="currentPage === PAGE_ACTIVITIES" 
+    :activities="activities"
     @create-activity="createActivity"
     @delete-activity="deleteActivity"  
   />

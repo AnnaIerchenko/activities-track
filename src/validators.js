@@ -59,7 +59,7 @@ export function isNumberOrNull(value){
 }
 
 
-function isNumber(value){
+export function isNumber(value){
   return typeof value === 'number'
 }
 function isString(value){
